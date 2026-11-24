@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { CatalogDownloads, type CatalogPdfKey } from "./catalog-downloads";
 import { formatNumber } from "./catalogs";
 import type { Catalog } from "./catalogs";
 import { Contact, SiteNav } from "./site";
@@ -24,7 +25,7 @@ export function SolarPage({ active, title, subtitle, children }: { active: strin
   );
 }
 
-export default function CatalogPage({ active, catalog }: { active: string; catalog: Catalog }) {
+export default function CatalogPage({ active, catalog }: { active: CatalogPdfKey; catalog: Catalog }) {
   return (
     <SolarPage active={active} title={catalog.title} subtitle={catalog.subtitle}>
       <section className={s.sheet} aria-labelledby="package-title">
@@ -55,6 +56,7 @@ export default function CatalogPage({ active, catalog }: { active: string; catal
           </table>
         </div>
       </section>
+      <CatalogDownloads catalog={active} />
       <div className={s.notes}>
         {catalog.notes.map(({ title, text }) => (
           <section key={title} className={s.info}>

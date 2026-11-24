@@ -1,17 +1,9 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
+const config: NextConfig = {
+  output: "export",
+  trailingSlash: true,
+  basePath: process.env.PAGES_BASE_PATH || "",
 };
 
-export default nextConfig;
+export default config;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CatalogDownloads } from "./_solar/catalog-downloads";
 import { catalogs, formatNumber } from "./_solar/catalogs";
 import { Contact, Icon, services, SiteNav } from "./_solar/site";
 import s from "./_solar/solar.module.css";
@@ -50,6 +51,9 @@ export default function HomePage() {
             })}
           </div>
         </section>
+        <div className={`${s.wrap} ${s.content}`}>
+          <CatalogDownloads />
+        </div>
       </main>
       <Contact />
     </div>
