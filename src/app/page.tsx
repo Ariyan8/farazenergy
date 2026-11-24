@@ -1,84 +1,57 @@
 import Link from "next/link";
-
-const sections = [
-  {
-    href: "/on-grid",
-    tag: "متصل به شبکه",
-    title: "نیروگاه آنگرید",
-    description: "تولید برق خورشیدی در کنار شبکه سراسری برای خانه‌ها و کسب‌وکارها.",
-  },
-  {
-    href: "/off-grid",
-    tag: "مستقل از شبکه",
-    title: "نیروگاه آفگرید",
-    description: "تأمین برق در باغ‌ها، ویلاها و مناطقی که به شبکه دسترسی ندارند.",
-  },
-  {
-    href: "/hybrid",
-    tag: "همراه با ذخیره‌ساز",
-    title: "نیروگاه هیبریدی",
-    description: "ترکیب پنل خورشیدی، شبکه و باتری برای مصرف روزانه و برق پشتیبان.",
-  },
-  {
-    href: "/agricultural-wells",
-    tag: "پمپاژ خورشیدی",
-    title: "چاه‌های کشاورزی",
-    description: "مقایسه پمپ‌های خورشیدی براساس قطر خروجی، عمق مدل و تعداد پنل.",
-  },
-];
+import { catalogs, formatNumber } from "./_solar/catalogs";
+import { Contact, Icon, services, SiteNav } from "./_solar/site";
+import s from "./_solar/solar.module.css";
 
 export default function HomePage() {
+  const total = Object.values(catalogs).reduce((sum, catalog) => sum + catalog.rows.length, 0);
+
   return (
-    <main lang="fa" dir="rtl" className="fe-page">
-      <header className="fe-hero">
-        <div className="fe-wrap fe-hero-inner">
-          <p className="fe-eyebrow">فراز انرژی اطلس | راهکارهای خورشیدی</p>
-
-          <h1>
-            نیروگاه‌های خورشیدی
-            <br />
-            <span>برای خانه، صنعت و کشاورزی</span>
-          </h1>
-
-          <p className="fe-intro">
-            از تأمین برق ساختمان تا راه‌اندازی پمپ چاه، انتخاب سیستم از شناخت
-            مصرف شما آغاز می‌شود. نوع کاربرد را انتخاب کنید و نمونه‌های آن را ببینید.
-          </p>
-
-          <a href="#solutions" className="fe-action mt-6">
-            بررسی راهکارها <span aria-hidden="true" className="ms-2">↓</span>
-          </a>
-        </div>
-      </header>
-
-      <nav
-        id="solutions"
-        aria-labelledby="solutions-heading"
-        className="fe-wrap fe-section scroll-mt-6"
-      >
-        <h2 id="solutions-heading" className="fe-heading">
-          کدام سیستم برای پروژه شما مناسب است؟
-        </h2>
-
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {sections.map((section) => (
-            <li key={section.href}>
-              <Link href={section.href} className="fe-card fe-card-link">
-                <span className="fe-tag">{section.tag}</span>
-                <h3 className="text-xl font-extrabold">{section.title}</h3>
-                <p className="fe-muted text-sm">{section.description}</p>
-
-                <span className="mt-auto pt-3 text-sm font-bold text-[var(--fe-primary)]">
-                  {section.href === "/agricultural-wells"
-                    ? "مشاهده مدل‌های پمپ"
-                    : "مشاهده ظرفیت‌ها"}
-                  <span aria-hidden="true" className="ms-2">←</span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </main>
+    <div dir="rtl" className={s.site}>
+      <SiteNav />
+      <main>
+        <section className={s.hero}>
+          <div className={`${s.wrap} ${s.heroInner}`}>
+            <div>
+              <p className={s.eyebrow}>طراحی و اجرای سامانه‌های خورشیدی</p>
+              <h1>فراز انرژی اطلس</h1>
+              <p className={s.heroLead}>از نیروگاه متصل به شبکه تا برق پشتیبان و پمپاژ کشاورزی؛ راهکار مناسب پروژه‌ات را بر اساس نوع مصرف و دسترسی به شبکه پیدا کن.</p>
+              <div className={s.actions}>
+                <Link href="#solutions" className={s.primary}>مشاهده راهکارها <Icon name="arrow" /></Link>
+                <Link href="#consultation" className={s.secondary}>مشاوره پروژه</Link>
+              </div>
+            </div>
+            <aside className={s.heroPanel} aria-label="پکیج‌های نیروگاه خورشیدی در یک نگاه">
+              <div className={s.panelTop}><span>کاتالوگ نیروگاه‌های خورشیدی</span><Icon name="sun" /></div>
+              <p className={s.panelNumber}>{formatNumber(total)} <span>پکیج با مشخصات و قیمت</span></p>
+              <div className={s.panelBreakdown}>
+                {services.slice(0, 3).map(({ id, name }) => (
+                  <Link href={`/${id}`} key={id}>{name}</Link>
+                ))}
+              </div>
+            </aside>
+          </div>
+        </section>
+        <section id="solutions" className={`${s.wrap} ${s.section}`} aria-labelledby="solutions-title">
+          <p className={s.eyebrow}>محصولات و خدمات</p>
+          <h2 id="solutions-title">راهکارهای انرژی خورشیدی</h2>
+          <p className={s.intro}>مشخصات بسته‌ها را مقایسه کن یا برای طراحی سامانهٔ پمپاژ استعلام بگیر.</p>
+          <div className={s.cards}>
+            {services.map(({ id, name, label, icon }) => {
+              const catalog = id === "agricultural-wells" ? null : catalogs[id];
+              return (
+                <Link key={id} href={`/${id}`} className={s.card}>
+                  <div className={s.cardTop}><span className={s.cardIcon}><Icon name={icon} /></span><span className={s.badge}>{catalog ? `${formatNumber(catalog.rows.length)} پکیج` : "استعلام پروژه"}</span></div>
+                  <h3>{catalog ? `نیروگاه ${name}` : name}</h3>
+                  <p>{catalog?.subtitle ?? `${label} برای تأمین برق پمپ چاه و سامانهٔ آبیاری`}</p>
+                  <span className={s.cardLink}>{catalog ? "مشاهده پکیج‌ها" : "مشاوره و استعلام"}<Icon name="arrow" /></span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      </main>
+      <Contact />
+    </div>
   );
 }

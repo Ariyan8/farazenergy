@@ -1,13 +1,8 @@
-import PlantPage from "@/components/PlantPage";
+import CatalogPage from "../_solar/catalog-page";
+import { catalogs } from "../_solar/catalogs";
+
+export const metadata = { title: "پکیج‌های نیروگاه خورشیدی آفگرید | فراز انرژی اطلس" };
 
 export default function OffGridPage() {
-  return (
-    <PlantPage
-      type="off-grid"
-      title="نیروگاه آفگرید"
-      description="نیروگاه آفگرید بدون اتصال به شبکه برق کار می‌کند. پنل‌ها در ساعات آفتابی انرژی تولید می‌کنند و باتری، برق موردنیاز شب یا زمان کمبود تابش را تأمین می‌کند."
-      capacities={[6, 12, 18]}
-      selectionNote="برای مقایسه نمونه‌های ۶، ۱۲ و ۱۸ کیلوواتی، توان هر وسیله را در ساعت استفاده روزانه آن ضرب کنید و انرژی مصرفی همه وسایل را جمع بزنید. ظرفیت پنل‌ها را بر اساس این مصرف و تابش فصل کم‌آفتاب انتخاب کنید. ظرفیت باتری به مدت استقلال موردنیاز و توان اینورتر به بار هم‌زمان و توان راه‌اندازی وسایلی مانند پمپ بستگی دارد."
-    />
-  );
+  return <CatalogPage active="off-grid" catalog={catalogs["off-grid"]} />;
 }

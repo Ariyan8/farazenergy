@@ -1,13 +1,8 @@
-import PlantPage from "@/components/PlantPage";
+import CatalogPage from "../_solar/catalog-page";
+import { catalogs } from "../_solar/catalogs";
+
+export const metadata = { title: "پکیج‌های نیروگاه خورشیدی آنگرید | فراز انرژی اطلس" };
 
 export default function OnGridPage() {
-  return (
-    <PlantPage
-      type="on-grid"
-      title="نیروگاه آنگرید"
-      description="نیروگاه آنگرید هم‌زمان با شبکه برق کار می‌کند. برق تولیدی می‌تواند در محل مصرف شود یا مطابق مجوز و قرارداد اتصال به شبکه تحویل داده شود."
-      capacities={[5, 10, 20, 30, 50, 75, 100]}
-      selectionNote="اگر هدف کاهش مصرف برق شبکه است، مصرف ساعات روشنایی را با تولید مورد انتظار مقایسه کنید. اگر هدف فروش برق است، پیش از انتخاب ظرفیت، سقف مجاز اتصال را بررسی کنید. فضای بدون سایه و شرایط انشعاب نیز در هر دو حالت تعیین‌کننده‌اند. آنگرید معمولی هنگام قطع شبکه خاموش می‌شود و به‌تنهایی برق اضطراری فراهم نمی‌کند."
-    />
-  );
+  return <CatalogPage active="on-grid" catalog={catalogs["on-grid"]} />;
 }

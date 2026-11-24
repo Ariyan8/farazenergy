@@ -1,253 +1,29 @@
-/* ── ۱. هدر کوتاه‌تر ───────────────────────────────────────── */
-
-.fe-hero-inner {
-  padding-block: clamp(1.75rem, 4vw, 3.25rem);
+@font-face {
+  font-family: "B Nazanin";
+  src: url("./fonts/b-nazanin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
 
-.fe-hero h1 {
-  margin-block: 0.55rem;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  line-height: 1.35;
+@font-face {
+  font-family: "B Zar";
+  src: url("./fonts/b-zar-bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
 }
 
-.fe-hero .fe-intro {
-  max-width: 72ch;
-  font-size: 0.95rem;
-  line-height: 1.85;
-}
-
-.fe-hero .fe-action {
-  margin-top: 1rem;
-}
-
-.fe-section {
-  padding-block: clamp(1.75rem, 4vw, 3rem);
-}
-
-.fe-heading {
-  margin-bottom: 1rem;
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-}
-
-
-/* ── ۲. شبکه کاشی‌ها: صفحه اصلی و هر چهار صفحه داخلی ────────── */
-
-.fe-page {
-  --fe-tile-size: 13.5rem; /* ضلع هر کارت در دسکتاپ: حدود ۲۱۶ پیکسل */
-}
-
-.fe-section > ul.grid,
-.fe-section > section > ul.grid {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(min(100%, var(--fe-tile-size)), var(--fe-tile-size)));
-  justify-content: start;
-  align-items: start;
-  gap: 0.9rem;
-}
-
-/* خود کارت، نه li بیرونی، قاب و پس‌زمینه را می‌سازد. */
-.fe-page .fe-card {
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  box-sizing: border-box;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  padding: clamp(0.95rem, 2vw, 1.25rem);
-  border: 1px solid #cbdfe0;
-  border-radius: 18px 18px 6px 18px;
-  background: linear-gradient(145deg, #edf8f8 0%, #fff 55%);
-  box-shadow: 0 3px 10px rgb(0 62 66 / 5%);
-}
-
-/* نقش کوچک پنل در گوشه بالا؛ زیر نوشته قرار می‌گیرد. */
-.fe-page .fe-card::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset-block-start: 0;
-  inset-inline-end: 0;
-  width: 4.25rem;
-  height: 3.5rem;
-  border-top-left-radius: 18px;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0 9px,
-      rgb(0 111 119 / 13%) 9px 10px
-    ),
-    repeating-linear-gradient(
-      115deg,
-      transparent 0 11px,
-      rgb(0 111 119 / 13%) 11px 12px
-    );
-  mask-image: linear-gradient(135deg, #000, transparent 76%);
-  pointer-events: none;
-}
-
-/* برش نارنجی کوچک، به‌جای کادر رنگی ضخیم */
-.fe-page .fe-card::after {
-  content: "";
-  position: absolute;
-  inset-inline-end: 1rem;
-  inset-block-end: 0;
-  width: 1.8rem;
-  height: 3px;
-  border-radius: 3px 3px 0 0;
-  background: var(--fe-accent);
-  pointer-events: none;
-}
-
-.fe-page .fe-tag {
-  padding: 0.15rem 0.55rem;
-  border: 1px solid #cbe6e7;
-  background: #edf8f8;
-  color: var(--fe-deep);
-  font-size: 0.72rem;
-  line-height: 1.6;
-}
-
-
-/* ── ۳. کارت‌های صفحه اصلی ────────────────────────────────── */
-
-.fe-page .fe-card-link {
-  gap: 0.5rem;
-  text-decoration: none;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.fe-page .fe-card-link h3 {
+html { min-height: 100%; }
+body {
+  min-height: 100vh;
   margin: 0;
-  color: var(--fe-deep);
-  font-size: 1.08rem;
-  font-weight: 800;
-  line-height: 1.5;
+  font-family: "B Nazanin", Tahoma, Arial, sans-serif;
+  font-size: 1.125rem;
+  background: #f4f8fa;
 }
 
-.fe-page .fe-card-link .fe-muted {
-  margin: 0;
-  font-size: 0.84rem;
-  line-height: 1.75;
-}
-
-/* لینک پایین کارت همیشه هم‌تراز با کارت‌های مجاور می‌ماند. */
-.fe-page .fe-card-link > span:last-child {
-  margin-top: auto;
-  padding-top: 0.4rem;
-  font-size: 0.79rem;
-}
-
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .fe-page .fe-card-link:hover {
-    transform: translateY(-3px);
-    border-color: var(--fe-primary);
-    box-shadow: 0 8px 18px rgb(0 62 66 / 10%);
-  }
-}
-
-
-/* ── ۴. کارت‌های ظرفیت نیروگاه و مدل پمپ ───────────────────── */
-
-/* عدد ظرفیت یا قطر پمپ، عنصر اصلی این کارت‌هاست. */
-.fe-page li.fe-card > h3 {
-  margin-block: auto 0.35rem;
-  padding-top: 0.65rem;
-  color: var(--fe-deep);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 900;
-  line-height: 1.3;
-}
-
-.fe-page li.fe-card > .fe-muted {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.7;
-}
-
-.fe-note {
-  margin-top: 1.25rem;
-  padding: 1rem 1.2rem;
-  border-inline-start-width: 3px;
-}
-
-
-/* ── ۵. کارت محصول: تصویر مربع، اطلاعات و دکمه بدون برش ──── */
-
-/*
-  چون تعداد ویژگی‌های هر محصول متفاوت است، قاب تصویر مربع می‌شود،
-  نه کل کارت محصول؛ به این ترتیب قیمت و دکمه تماس پنهان نمی‌شوند.
-*/
-.fe-product.fe-card {
-  padding: 0.95rem;
-  border-color: #cbdfe0;
-  border-radius: 18px 18px 6px 18px;
-  box-shadow: 0 3px 10px rgb(0 62 66 / 5%);
-}
-
-.fe-product > .aspect-video {
-  width: min(100%, 10rem);
-  aspect-ratio: 1;
-  align-self: center;
-  margin-bottom: 0.8rem;
-}
-
-.fe-product > .aspect-video img {
-  object-fit: contain;
-}
-
-.fe-product > h3 {
-  font-size: 1.05rem;
-  line-height: 1.5;
-}
-
-.fe-product > ul {
-  margin-block: 0.7rem;
-}
-
-.fe-product > ul > li + li {
-  margin-top: 0.2rem;
-}
-
-
-/* ── ۶. موبایل ─────────────────────────────────────────────── */
-
-/* دو ستون تا جایی که متن فارسی فضای کافی برای خواندن داشته باشد. */
-@media (min-width: 360px) and (max-width: 600px) {
-  .fe-section > ul.grid,
-  .fe-section > section > ul.grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.65rem;
-  }
-
-  .fe-page .fe-card {
-    padding: 0.8rem;
-  }
-
-  .fe-page .fe-card-link {
-    gap: 0.35rem;
-  }
-
-  .fe-page .fe-card-link h3 {
-    font-size: 0.98rem;
-  }
-
-  .fe-page .fe-card-link .fe-muted {
-    font-size: 0.78rem;
-    line-height: 1.65;
-  }
-}
-
-@media (max-width: 359px) {
-  .fe-section > ul.grid,
-  .fe-section > section > ul.grid {
-    grid-template-columns: minmax(0, var(--fe-tile-size));
-    justify-content: center;
-  }
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: "B Zar", "B Nazanin", Tahoma, Arial, sans-serif;
+  font-weight: 700;
 }

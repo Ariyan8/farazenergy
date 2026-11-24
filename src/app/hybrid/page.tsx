@@ -1,13 +1,8 @@
-import PlantPage from "@/components/PlantPage";
+import CatalogPage from "../_solar/catalog-page";
+import { catalogs } from "../_solar/catalogs";
+
+export const metadata = { title: "پکیج‌های نیروگاه خورشیدی هیبریدی | فراز انرژی اطلس" };
 
 export default function HybridPage() {
-  return (
-    <PlantPage
-      type="hybrid"
-      title="نیروگاه هیبریدی"
-      description="این سیستم پنل خورشیدی، باتری و شبکه برق را ترکیب می‌کند. انرژی مازاد روز را می‌توان در باتری ذخیره کرد و شب یا هنگام قطعی برق برای مصرف‌کننده‌های منتخب به کار برد."
-      capacities={[5, 10, 15, 20, 30, 50]}
-      selectionNote="اگر هدف شما تأمین برق هنگام قطعی است، ابتدا وسایل ضروری و مدت پشتیبانی موردنیاز را مشخص کنید. برای مثال، بار ثابت ۲ کیلوواتی در ۳ ساعت به ۶ کیلووات‌ساعت انرژی نیاز دارد. ظرفیت نامی باتری باید با در نظر گرفتن تلفات و حد مجاز تخلیه انتخاب شود. برای کار هنگام قطعی، اینورتر و مدار پشتیبان نیز باید برای همین کاربرد طراحی شده باشند."
-    />
-  );
+  return <CatalogPage active="hybrid" catalog={catalogs.hybrid} />;
 }

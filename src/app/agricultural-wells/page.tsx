@@ -1,18 +1,26 @@
-import PlantPage from "@/components/PlantPage";
+import { SolarPage } from "../_solar/catalog-page";
+import s from "../_solar/solar.module.css";
+
+export const metadata = { title: "پمپاژ خورشیدی چاه‌های کشاورزی | فراز انرژی اطلس" };
+
+const details = [
+  "توان، ولتاژ و تعداد فاز پمپ فعلی (ترجیحاً عکس پلاک پمپ)",
+  "تراز آب هنگام پمپاژ، اختلاف ارتفاع تا محل تحویل و طول لوله",
+  "حجم آب موردنیاز روزانه و ساعات کار پمپ",
+  "محل پروژه و دسترسی به برق شبکه",
+];
 
 export default function AgriculturalWellsPage() {
   return (
-    <PlantPage
-      type="agricultural-wells"
-      title="پمپ‌های خورشیدی چاه‌های کشاورزی"
-      description="این سیستم برق پمپ چاه را از پنل‌های خورشیدی تأمین می‌کند. مدل‌های سه‌فاز زیر را بر اساس قطر خروجی، عمق درج‌شده در نام مدل و تعداد پنل‌های همراه مقایسه کنید."
-      pumps={[
-        { outletInches: 1.25, depthMeters: 230, panelCount: 8 },
-        { outletInches: 2, depthMeters: 150, panelCount: 8 },
-        { outletInches: 3, depthMeters: 98, panelCount: 13 },
-        { outletInches: 4, depthMeters: 66, panelCount: 16 },
-      ]}
-      selectionNote="برای انتخاب پمپ، ابتدا آب موردنیاز زمین را بر حسب مترمکعب در ساعت مشخص کنید. عمق درج‌شده در نام مدل به‌تنهایی نشان نمی‌دهد پمپ چه مقدار آب تحویل می‌دهد. اختلاف ارتفاع سطح آب هنگام پمپاژ تا محل تحویل، افت فشار لوله و فشار لازم برای آبیاری را در نظر بگیرید و آب‌دهی را در منحنی عملکرد همان مدل بررسی کنید."
-    />
+    <SolarPage active="agricultural-wells" title="چاه‌های کشاورزی" subtitle="طراحی سامانه خورشیدی برای تأمین برق پمپ چاه و آبیاری">
+      <section className={s.info}>
+        <p className={s.eyebrow}>اطلاعات موردنیاز برای استعلام</p>
+        <h2>طراحی و استعلام سامانه پمپاژ خورشیدی</h2>
+        <p>تعداد پنل‌ها، تجهیزات و قیمت پس از بررسی مشخصات پمپ، ارتفاع پمپاژ و نیاز آبی پروژه تعیین می‌شوند. برای دریافت پیشنهاد، اطلاعات زیر را هنگام تماس یا از طریق واتساپ ارسال کنید:</p>
+        <ul className={s.checklist}>
+          {details.map((detail) => <li key={detail}>{detail}</li>)}
+        </ul>
+      </section>
+    </SolarPage>
   );
 }
