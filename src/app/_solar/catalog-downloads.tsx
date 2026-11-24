@@ -2,10 +2,10 @@ import { Icon } from "./site";
 import s from "./solar.module.css";
 
 const pdfs = {
-  all: { title: "کاتالوگ جامع نیروگاه‌های خورشیدی", file: "atlas-rounded-all.pdf" },
-  "on-grid": { title: "کاتالوگ نیروگاه آنگرید", file: "atlas-rounded-ongrid.pdf" },
-  "off-grid": { title: "کاتالوگ نیروگاه آفگرید", file: "atlas-rounded-offgrid.pdf" },
-  hybrid: { title: "کاتالوگ نیروگاه هیبریدی", file: "atlas-rounded-hybrid.pdf" },
+  all: { title: " جامع نیروگاه‌های خورشیدی", file: "atlas-rounded-all.pdf" },
+  "on-grid": { title: " Ongridکاتالوگ نیروگاه آنگرید", file: "atlas-rounded-ongrid.pdf" },
+  "off-grid": { title: "Offgridکاتالوگ کاتالوگ نیروگاه آفگرید", file: "atlas-rounded-offgrid.pdf" },
+  hybrid: { title: " Hybrid کاتالوگ نیروگاه هیبریدی", file: "atlas-rounded-hybrid.pdf" },
 } as const;
 
 type PdfKey = keyof typeof pdfs;

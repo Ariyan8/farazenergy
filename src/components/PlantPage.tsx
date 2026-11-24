@@ -28,6 +28,13 @@ const categoryLabels = {
   "agricultural-wells": "پمپاژ خورشیدی",
 };
 
+const englishTitles = {
+  hybrid: "Hybrid Solar Power Plant",
+  "off-grid": "Off-Grid Solar Power Plant",
+  "on-grid": "On-Grid Solar Power Plant",
+  "agricultural-wells": "Solar Pumping for Agricultural Wells",
+} satisfies Record<PlantPageProps["type"], string>;
+
 const fa = new Intl.NumberFormat("fa-IR");
 
 export default function PlantPage(props: PlantPageProps) {
@@ -53,10 +60,19 @@ export default function PlantPage(props: PlantPageProps) {
       <header className="fe-hero">
         <div className="fe-wrap fe-hero-inner">
           <Link href="/" className="fe-eyebrow hover:underline">
-            فراز انرژی اطلس | راهکارهای خورشیدی
+            فراز انرژی اطلس | راهکارهای خورشیدی{" "}
+            <bdi lang="en" dir="ltr">
+              (Faraz Energy Atlas | Solar Solutions)
+            </bdi>
           </Link>
 
-          <h1>{props.title}</h1>
+          <h1>
+            {props.title}{" "}
+            <bdi lang="en" dir="ltr">
+              ({englishTitles[props.type]})
+            </bdi>
+          </h1>
+
           <p className="fe-intro">{props.description}</p>
         </div>
       </header>
@@ -64,7 +80,9 @@ export default function PlantPage(props: PlantPageProps) {
       <div className="fe-wrap fe-section">
         <section aria-labelledby="models-heading">
           <h2 id="models-heading" className="fe-heading">
-            {isPumpPage ? "مدل‌های نمونه پمپ خورشیدی" : `ظرفیت‌های نمونه ${props.title}`}
+            {isPumpPage
+              ? "مدل‌های نمونه پمپ خورشیدی"
+              : `ظرفیت‌های نمونه ${props.title}`}
           </h2>
 
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -10,13 +10,10 @@ interface Props {
 export default function ProductCard({ pkg }: Props) {
   const [failedImage, setFailedImage] = useState<string | null>(null);
   const showImage = Boolean(pkg.image) && failedImage !== pkg.image;
+  const englishName = pkg.nameEn?.trim();
 
   return (
-    <article
-      lang="fa"
-      dir="rtl"
-      className="fe-product fe-card flex flex-col"
-    >
+    <article lang="fa" dir="rtl" className="fe-product fe-card flex flex-col">
       <div className="relative mb-5 aspect-video overflow-hidden rounded-xl bg-[var(--fe-soft)]">
         {showImage ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -44,7 +41,16 @@ export default function ProductCard({ pkg }: Props) {
         )}
       </div>
 
-      <h3 className="text-xl font-extrabold text-[var(--fe-deep)]">{pkg.name}</h3>
+      <h3 className="text-xl font-extrabold text-[var(--fe-deep)]">
+        {pkg.name}
+        {englishName && (
+          <>
+            {" "}
+            <bdi lang="en" dir="ltr">({englishName})</bdi>
+          </>
+        )}
+      </h3>
+
       <p className="fe-muted mt-1 text-sm">ظرفیت: {pkg.capacity}</p>
 
       <ul className="my-5 space-y-2">
