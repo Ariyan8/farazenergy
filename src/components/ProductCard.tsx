@@ -64,9 +64,7 @@ export default function ProductCard({ pkg }: Props) {
         ))}
       </ul>
 
-      <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-[var(--fe-border)] pt-4">
-        <span className="font-bold text-[var(--fe-deep)]">{pkg.price}</span>
-
+      <div className="mt-auto border-t border-[var(--fe-border)] pt-4">
         <a
           href="tel:+982133974030"
           aria-label={`تماس برای مشاوره درباره ${pkg.name}`}

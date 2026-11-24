@@ -31,25 +31,23 @@ export default function CatalogPage({ active, catalog }: { active: CatalogPdfKey
       <section className={s.sheet} aria-labelledby="package-title">
         <div className={s.sheetHeading}>
           <p className={s.eyebrow}>{formatNumber(catalog.rows.length)} پکیج در کاتالوگ</p>
-          <h2 id="package-title">مشخصات و قیمت بسته‌ها</h2>
-          <p>قیمت‌ها به ریال و طبق کاتالوگ هستند. پیش از سفارش، قیمت روز را استعلام کنید.</p>
+          <h2 id="package-title">مشخصات بسته‌ها</h2>
           <p className={s.scrollHint}>برای دیدن همهٔ ستون‌ها، جدول را افقی جابه‌جا کنید.</p>
         </div>
         <div tabIndex={0} role="region" aria-labelledby="package-title" className={s.tableScroll}>
           <table className={s.table}>
             <thead>
               <tr>
-                {["کد بسته", ...catalog.columns, "قیمت بسته (ریال)"].map((column) => (
+                {["کد بسته", ...catalog.columns].map((column) => (
                   <th key={column} scope="col">{column}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {catalog.rows.map(({ code, specs, price }) => (
+              {catalog.rows.map(({ code, specs }) => (
                 <tr key={code}>
                   <th scope="row"><bdi dir="ltr" className={s.code}>{code}</bdi></th>
                   {specs.map((spec, index) => <td key={catalog.columns[index]}><bdi>{spec}</bdi></td>)}
-                  <td className={s.price}><bdi>{formatNumber(price)}</bdi></td>
                 </tr>
               ))}
             </tbody>

@@ -6,78 +6,73 @@ export interface Package {
   nameEn?: string;
   type: PlantType;
   capacity: string;
-  price: string;
   features: string[];
   image: string;
   badge?: string;
 }
 
 export const packages: Package[] = [
-  // ---------- آنگرید (On-Grid) ----------
+  // ---------- آنگرید ----------
   {
     id: "og-5kw",
     name: "پکیج آنگرید ۵ کیلووات",
-    nameEn: "On-Grid Package – 5 kW",
+    nameEn: "On-Grid 5 kW",
     type: "on-grid",
     capacity: "۵ کیلووات",
-    price: "تماس بگیرید",
     features: [
       "پنل خورشیدی مونوکریستال",
       "اینورتر شبکه‌ای",
       "نصب و راه‌اندازی",
       "ضمانت ۱۲ ساله پنل",
     ],
-    image: "/images/on-grid-5kw.jpg",
+    image: "/images/on-grid-5kw.webp",
     badge: "پرفروش",
   },
   {
     id: "og-10kw",
     name: "پکیج آنگرید ۱۰ کیلووات",
-    nameEn: "On-Grid Package – 10 kW",
+    nameEn: "On-Grid 10 kW",
     type: "on-grid",
     capacity: "۱۰ کیلووات",
-    price: "تماس بگیرید",
     features: [
       "پنل خورشیدی مونوکریستال",
       "اینورتر شبکه‌ای سه‌فاز",
       "نصب و راه‌اندازی",
       "مانیتورینگ آنلاین",
     ],
-    image: "/images/on-grid-10kw.jpg",
+    image: "/images/on-grid-10kw.webp",
   },
 
-  // ---------- آفگرید (Off-Grid) ----------
+  // ---------- آفگرید ----------
   {
     id: "offg-3kw",
     name: "پکیج آفگرید ۳ کیلووات",
-    nameEn: "Off-Grid Package – 3 kW",
+    nameEn: "Off-Grid 3 kW",
     type: "off-grid",
     capacity: "۳ کیلووات",
-    price: "تماس بگیرید",
     features: [
       "پنل خورشیدی",
       "باتری لیتیوم",
       "شارژ کنترلر MPPT",
       "مناسب مناطق بدون برق",
     ],
-    image: "/images/off-grid-3kw.jpg",
+    image: "/images/off-grid-3kw.webp",
     badge: "پیشنهادی",
   },
 
-  // ---------- هیبریدی (Hybrid) ----------
+  // ---------- هیبریدی ----------
   {
     id: "hy-8kw",
     name: "پکیج هیبریدی ۸ کیلووات",
-    nameEn: "Hybrid Package – 8 kW",
+    nameEn: "Hybrid 8 kW",
     type: "hybrid",
     capacity: "۸ کیلووات",
-    price: "تماس بگیرید",
     features: [
       "پنل خورشیدی",
       "باتری ذخیره‌ساز",
       "اینورتر هیبریدی",
       "اتصال به شبکه + ذخیره انرژی",
     ],
-    image: "/images/hybrid-8kw.jpg",
+    image: "/images/hybrid-8kw.webp",
   },
 ];

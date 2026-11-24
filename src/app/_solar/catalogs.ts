@@ -1,5 +1,5 @@
 export type CatalogNote = { title: string; text: string };
-export type CatalogRow = { code: string; specs: string[]; price: number };
+export type CatalogRow = { code: string; specs: string[] };
 export type Catalog = {
   title: string;
   subtitle: string;
@@ -15,31 +15,31 @@ const kwh = (value: number) => `${formatNumber(value)} کیلووات‌ساعت
 const panels = (count: number, watts: number) =>
   `${formatNumber(count)} عدد پنل ${formatNumber(watts)} واتی`;
 
-const onGridSpecs: [number, number, number, string, number][] = [
-  [5, 8, 625, "۵", 6_900_000_000],
-  [10, 16, 625, "۱۰", 13_400_000_000],
-  [15, 20, 720, "۱۵", 24_000_000_000],
-  [20, 28, 720, "۲۰", 30_200_000_000],
-  [35, 48, 720, "۲۰ + ۱۵", 52_500_000_000],
-  [50, 70, 720, "۵۰", 66_000_000_000],
-  [70, 98, 720, "۵۰ + ۲۰", 96_100_000_000],
-  [100, 138, 720, "۲ × ۵۰", 130_800_000_000],
-  [150, 208, 720, "۳ × ۵۰", 196_700_000_000],
+const onGridSpecs: [number, number, number, string][] = [
+  [5, 8, 625, "۵"],
+  [10, 16, 625, "۱۰"],
+  [15, 20, 720, "۱۵"],
+  [20, 28, 720, "۲۰"],
+  [35, 48, 720, "۲۰ + ۱۵"],
+  [50, 70, 720, "۵۰"],
+  [70, 98, 720, "۵۰ + ۲۰"],
+  [100, 138, 720, "۲ × ۵۰"],
+  [150, 208, 720, "۳ × ۵۰"],
 ];
 
-const offGridSpecs: [number, number, number, number, number][] = [
-  [6, 10, 6.25, 1, 11_600_000_000],
-  [12, 20, 12.5, 2, 23_100_000_000],
-  [18, 30, 18.75, 3, 34_700_000_000],
+const offGridSpecs: [number, number, number, number][] = [
+  [6, 10, 6.25, 1],
+  [12, 20, 12.5, 2],
+  [18, 30, 18.75, 3],
 ];
 
-const hybridSpecs: [number, number, number, number, number][] = [
-  [12, 20, 625, 20, 30_700_000_000],
-  [15, 22, 720, 25, 42_500_000_000],
-  [20, 28, 720, 30, 51_700_000_000],
-  [30, 44, 720, 50, 84_600_000_000],
-  [40, 56, 720, 60, 103_000_000_000],
-  [75, 104, 720, 125, 207_200_000_000],
+const hybridSpecs: [number, number, number, number][] = [
+  [12, 20, 625, 20],
+  [15, 22, 720, 25],
+  [20, 28, 720, 30],
+  [30, 44, 720, 50],
+  [40, 56, 720, 60],
+  [75, 104, 720, 125],
 ];
 
 export const catalogs: Record<"on-grid" | "off-grid" | "hybrid", Catalog> = {
@@ -47,10 +47,9 @@ export const catalogs: Record<"on-grid" | "off-grid" | "hybrid", Catalog> = {
     title: "نیروگاه خورشیدی آنگرید (On-Grid)",
     subtitle: "متصل به شبکه برق | ۵ تا ۱۵۰ کیلووات",
     columns: ["توان نامی", "تعداد و توان پنل", "اینورتر (کیلووات)", "فاز"],
-    rows: onGridSpecs.map(([power, count, watts, inverter, price]) => ({
+    rows: onGridSpecs.map(([power, count, watts, inverter]) => ({
       code: `ONG-${power}KW`,
       specs: [kw(power), panels(count, watts), inverter, power === 5 ? "تک‌فاز" : "سه‌فاز"],
-      price,
     })),
     notes: [
       {
@@ -71,10 +70,9 @@ export const catalogs: Record<"on-grid" | "off-grid" | "hybrid", Catalog> = {
     title: "نیروگاه خورشیدی آفگرید (Off-Grid)",
     subtitle: "مستقل از شبکه برق | ۶ تا ۱۸ کیلووات",
     columns: ["ظرفیت نیروگاه", "تعداد و توان پنل", "توان کل پنل‌ها", "سانورتر ۶ کیلوواتی", "تعداد باتری", "ظرفیت کل باتری‌ها"],
-    rows: offGridSpecs.map(([power, count, arrayPower, units, price]) => ({
+    rows: offGridSpecs.map(([power, count, arrayPower, units]) => ({
       code: `OFF-${power}KW`,
       specs: [kw(power), panels(count, 625), kw(arrayPower), `${formatNumber(units)} عدد`, `${formatNumber(units)} عدد`, kwh(5 * units)],
-      price,
     })),
     notes: [
       {
@@ -91,10 +89,9 @@ export const catalogs: Record<"on-grid" | "off-grid" | "hybrid", Catalog> = {
     title: "نیروگاه خورشیدی هیبریدی (Hybrid)",
     subtitle: "متصل به شبکه با باتری پشتیبان | ۱۲ تا ۷۵ کیلووات",
     columns: ["تعداد و توان پنل", "توان اینورتر", "فاز", "ظرفیت باتری"],
-    rows: hybridSpecs.map(([power, count, watts, battery, price]) => ({
+    rows: hybridSpecs.map(([power, count, watts, battery]) => ({
       code: `HYB-${power}KW`,
       specs: [panels(count, watts), kw(power), power === 12 ? "تک‌فاز" : "سه‌فاز", kwh(battery)],
-      price,
     })),
     notes: [
       {
