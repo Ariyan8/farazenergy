@@ -22,10 +22,10 @@ type PlantPageProps = {
 );
 
 const categoryLabels = {
-  hybrid: "متصل به شبکه با ذخیره‌ساز",
-  "off-grid": "مستقل از شبکه",
-  "on-grid": "متصل به شبکه",
-  "agricultural-wells": "پمپاژ خورشیدی",
+  hybrid: "متصل به شبکه با ذخیره‌ساز (Hybrid)",
+  "off-grid": "مستقل از شبکه (Off-Grid)",
+  "on-grid": "متصل به شبکه (On-Grid)",
+  "agricultural-wells": "پمپاژ خورشیدی (Solar Pumping)",
 };
 
 const englishTitles = {

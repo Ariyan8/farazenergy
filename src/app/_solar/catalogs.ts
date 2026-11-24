@@ -44,7 +44,7 @@ const hybridSpecs: [number, number, number, number, number][] = [
 
 export const catalogs: Record<"on-grid" | "off-grid" | "hybrid", Catalog> = {
   "on-grid": {
-    title: "نیروگاه خورشیدی آنگرید",
+    title: "نیروگاه خورشیدی آنگرید (On-Grid)",
     subtitle: "متصل به شبکه برق | ۵ تا ۱۵۰ کیلووات",
     columns: ["توان نامی", "تعداد و توان پنل", "اینورتر (کیلووات)", "فاز"],
     rows: onGridSpecs.map(([power, count, watts, inverter, price]) => ({
@@ -68,7 +68,7 @@ export const catalogs: Record<"on-grid" | "off-grid" | "hybrid", Catalog> = {
     ],
   },
   "off-grid": {
-    title: "نیروگاه خورشیدی آفگرید",
+    title: "نیروگاه خورشیدی آفگرید (Off-Grid)",
     subtitle: "مستقل از شبکه برق | ۶ تا ۱۸ کیلووات",
     columns: ["ظرفیت نیروگاه", "تعداد و توان پنل", "توان کل پنل‌ها", "سانورتر ۶ کیلوواتی", "تعداد باتری", "ظرفیت کل باتری‌ها"],
     rows: offGridSpecs.map(([power, count, arrayPower, units, price]) => ({
@@ -88,7 +88,7 @@ export const catalogs: Record<"on-grid" | "off-grid" | "hybrid", Catalog> = {
     ],
   },
   hybrid: {
-    title: "نیروگاه خورشیدی هیبریدی",
+    title: "نیروگاه خورشیدی هیبریدی (Hybrid)",
     subtitle: "متصل به شبکه با باتری پشتیبان | ۱۲ تا ۷۵ کیلووات",
     columns: ["تعداد و توان پنل", "توان اینورتر", "فاز", "ظرفیت باتری"],
     rows: hybridSpecs.map(([power, count, watts, battery, price]) => ({
